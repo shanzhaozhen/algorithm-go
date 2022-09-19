@@ -71,14 +71,18 @@ func longestPalindrome2(s string) string {
 	}
 	start, end := 0, 0
 	for i := 0; i < L; i++ {
+		// 分别拿到奇数偶数的回文子串长度
+		// 奇数中心的扩散长度
 		left1, right1 := expandAroundCenter(s, i, i)
-		//left2, right2 := expandAroundCenter(s, i, i+1)
+		// 偶数中心的扩散长度
+		left2, right2 := expandAroundCenter(s, i, i+1)
+		// 对比最大的长度
 		if right1-left1 > end-start {
 			start, end = left1, right1
 		}
-		//if right2-left2 > end-start {
-		//	start, end = left2, right2
-		//}
+		if right2-left2 > end-start {
+			start, end = left2, right2
+		}
 	}
 	return s[start : end+1]
 }
