@@ -67,3 +67,46 @@ func abs(x int) int {
 	}
 	return x
 }
+
+func threeSumClosest1(nums []int, target int) int {
+	sort.Ints(nums)
+	l := len(nums)
+
+	min := math.MaxInt
+	ans := 0
+
+	for i := 0; i < l; i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		for j, k := i+1, l-1; j < k; {
+			sum := nums[i] + nums[j] + nums[k]
+
+			if sum == target {
+				return target
+			}
+
+			s := abs(target - sum)
+			if abs(target-sum) < min {
+				min = s
+				ans = sum
+			}
+
+			if sum > target {
+				k0 := k - 1
+				for ; j < k0 && nums[k0] == nums[k]; k0-- {
+				}
+				k = k0
+			} else {
+				j0 := j + 1
+				for ; j0 < k && nums[j0] == nums[j]; j0++ {
+				}
+				j = j0
+			}
+		}
+
+	}
+
+	return ans
+}

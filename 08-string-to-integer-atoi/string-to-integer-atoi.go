@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	fmt.Println(myAtoi1("42"))
+	fmt.Println(myAtoi("42"))
 }
 
-func myAtoi1(s string) int {
+func myAtoi(s string) int {
 	i, abs := 0, 0
 	l := len(s)
 	sign := 1
